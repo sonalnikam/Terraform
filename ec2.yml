@@ -1,0 +1,32 @@
+
+- hosts: localhost
+  become: yes
+  connection: local
+  tasks:
+   - name: shell
+     shell: echo "hii"
+   - name: json
+     include_vars:
+        file: "/home/ubuntu/ans/sparx.json"
+   - name: cat
+     shell: cat /home/ubuntu/ans/sparx.json
+     register: result
+   - debug:
+        msg: "{{ result.stdout | from_json }}"
+     register: output
+   - name: print
+     debug: 
+        msg: "{{ output.msg.definitions.linux.properties.image.description }}"
+    
+   - name: create a stack, specify role that cloudformation assumes
+     ec2:
+        aws_access_key: "AKIASZHPSUOSZIK23EZK"
+        aws_secret_key: "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"
+        key_name:  "{{ output.msg.definitions.linux.properties.key.description }}"
+        region: "{{ output.msg.definitions.linux.properties.region.description }}"
+        instance_type: "{{ output.msg.definitions.linux.properties.instance_type.description }}"
+        image: "{{ output.msg.definitions.linux.properties.image.description }}"
+        id: "{{ output.msg.definitions.linux.properties.tag.description }}"
+
+
+  

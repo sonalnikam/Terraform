@@ -1,0 +1,62 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://iec.ch/TC57/llll#",
+	"type": "object",
+	"properties":
+	{
+		"llll":
+		{
+			"type": "object",
+			"anyOf":
+			[
+				{ "$ref": "#/definitions/linux" }
+			]
+		}
+	},
+	"definitions":
+	{
+		"linux" : 
+		{
+			"type": "object",
+			"properties":
+			{
+				"image":
+				{
+					"description" : "ami-039a49e70ea773ffc",
+					"type" : "string",
+					"minItems" : 1,
+					"maxItems" : 1
+				},
+				"instance_type":
+				{
+					"description" : "t2.micro",
+					"type" : "string",
+					"minItems" : 1,
+					"maxItems" : 1
+				},
+				"key":
+				{
+					"description" : "demo",
+					"type" : "string",
+					"minItems" : 1,
+					"maxItems" : 1
+				},
+				"region":
+				{
+					"description" : "us-east-1",
+					"type" : "string",
+					"minItems" : 1,
+					"maxItems" : 1
+				},
+				"tag":
+				{
+					"description" : "Sparx",
+					"type" : "string",
+					"minItems" : 1,
+					"maxItems" : 1
+				}
+			}
+		}
+	}
+}
+
